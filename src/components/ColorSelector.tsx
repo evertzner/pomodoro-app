@@ -20,7 +20,7 @@ const ColorSelector = ({ color }: ColorProps) => {
       onClick={selectColor}
       className={`flex items-center justify-center ${color} p-2.5 rounded-full w-10 h-10 hover:outline hover:outline-1 hover:outline-offset-[5px] hover:outline-blue-50`}
     >
-      <IconCheck />
+      {color === $selectedColor && <IconCheck />}
     </button>
   );
 };
