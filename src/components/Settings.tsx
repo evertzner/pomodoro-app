@@ -5,7 +5,7 @@ import ColorSelector from './ColorSelector';
 
 const Settings = () => {
   return (
-    <div className='flex flex-col p-6 md:p-10 md:pt-9 rounded-2xl w-[327px] md:w-[540px] bg-white'>
+    <div className='flex flex-col p-6 pb-7 md:p-10 md:pt-9 rounded-2xl w-[327px] md:w-[540px] bg-white relative'>
       <div className='flex justify-between items-center mb-6'>
         <h2 className='text-preset-3'>Settings</h2>
         <IconClose />
@@ -20,7 +20,7 @@ const Settings = () => {
         </div>
       </div>
       <hr />
-      <div className='py-6 flex flex-col gap-4 items-center'>
+      <div className='py-6 flex flex-col gap-4 items-center md:flex-row md:justify-between'>
         <h3 className='text-preset-5 text-center md:text-left'>Font</h3>
         <div className='flex gap-4'>
           <FontSelector font={'font-kumbh'} />
@@ -29,7 +29,7 @@ const Settings = () => {
         </div>
       </div>
       <hr />
-      <div className='py-6 flex flex-col gap-4 items-center'>
+      <div className='py-6 flex flex-col gap-4 items-center md:flex-row md:justify-between'>
         <h3 className='text-preset-5 text-center md:text-left'>Color</h3>
         <div className='flex gap-4'>
           <ColorSelector color='bg-red-400' />
@@ -37,6 +37,9 @@ const Settings = () => {
           <ColorSelector color={'bg-fucsia-400'} />
         </div>
       </div>
+      <button className='bg-red-400 text-white font-bold p-[18px] w-[140px] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2'>
+        Apply
+      </button>
     </div>
   );
 };
