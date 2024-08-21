@@ -4,18 +4,20 @@ import { useEffect, useState } from 'react';
 
 type InputNumberProps = {
   text: string;
+  value: number;
+  onInputChange: (value: number) => void;
 };
 
-const InputNumber = ({ text }: InputNumberProps) => {
-  const [inputValue, setInputValue] = useState(0);
+const InputNumber = ({ text, value, onInputChange }: InputNumberProps) => {
+  const [inputValue, setInputValue] = useState(value);
 
-  const positiveValue = (number) => {
+  const positiveValue = (number: number) => {
     if (number < 0) return false;
 
     return true;
   };
 
-  const changeValue = (number) => {
+  const changeValue = (number: number) => {
     positiveValue(number) && setInputValue(number);
   };
 
@@ -28,7 +30,7 @@ const InputNumber = ({ text }: InputNumberProps) => {
   };
 
   useEffect(() => {
-    console.log(inputValue);
+    onInputChange(inputValue);
   }, [inputValue]);
 
   return (
@@ -40,7 +42,7 @@ const InputNumber = ({ text }: InputNumberProps) => {
           type='number'
           className='appearance-none outline-none text-sm font-bold text-blue-900 bg-blue-50 grid grid-cols-[1fr_max-content] w-[140px] h-[40px] md:h-[48px] items-center rounded-[10px] overflow-hidden p-4'
           value={inputValue}
-          onChange={(e) => changeValue(e.target.value)}
+          onChange={(e) => changeValue(parseInt(e.target.value))}
           onKeyDown={(e) => e.preventDefault()}
         />
         <div className='absolute right-0 -translate-x-1/2 top-1/2 -translate-y-1/2'>

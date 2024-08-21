@@ -9,8 +9,6 @@ type ColorProps = {
 const ColorSelector = ({ color }: ColorProps) => {
   const $selectedColor = useStore(selectedColor);
 
-  console.log('fonts', color, $selectedColor);
-
   const selectColor = () => {
     selectedColor.set(color);
   };
