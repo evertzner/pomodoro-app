@@ -10,6 +10,8 @@ export const pomodoroTime = atom(25);
 export const shortBreakTime = atom(5);
 export const longBreakTime = atom(15);
 
+export const isModalOpened = atom<boolean>(false);
+
 export interface ISettings {
   pomodoroTime: number;
   shortBreakTime: number;

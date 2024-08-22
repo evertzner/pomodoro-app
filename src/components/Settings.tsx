@@ -8,7 +8,8 @@ import {
   selectedFont,
   pomodoroTime,
   shortBreakTime,
-  longBreakTime
+  longBreakTime,
+  isModalOpened
 } from '../utils/store';
 import { useStore } from '@nanostores/react';
 import { useEffect } from 'react';
@@ -37,7 +38,9 @@ const Settings = () => {
     <div className='flex flex-col p-6 pb-7 md:p-10 md:pt-9 rounded-2xl w-[327px] md:w-[540px] bg-white relative'>
       <div className='flex justify-between items-center mb-6'>
         <h2 className='text-preset-3'>Settings</h2>
-        <IconClose />
+        <button onClick={() => isModalOpened.set(false)}>
+          <IconClose />
+        </button>
       </div>
       <hr className='-mx-6' />
       <div className='py-6 flex flex-col gap-4'>
