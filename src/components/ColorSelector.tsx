@@ -1,6 +1,7 @@
-import { selectedColor, type Color } from '../utils/store';
+import { selectedColor, settings, type Color } from '../utils/store';
 import { useStore } from '@nanostores/react';
 import IconCheck from '../Icons/IconCheck';
+import { useEffect } from 'react';
 
 type ColorProps = {
   color: Color;
@@ -8,6 +9,11 @@ type ColorProps = {
 
 const ColorSelector = ({ color }: ColorProps) => {
   const $selectedColor = useStore(selectedColor);
+  const $settings = useStore(settings);
+
+  useEffect(() => {
+    selectedColor.set($settings.color);
+  }, [$settings]);
 
   const selectColor = () => {
     selectedColor.set(color);

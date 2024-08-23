@@ -1,5 +1,6 @@
-import { selectedFont, type Font } from '../utils/store';
+import { selectedFont, settings, type Font } from '../utils/store';
 import { useStore } from '@nanostores/react';
+import { useEffect } from 'react';
 
 type FontProps = {
   font: Font;
@@ -7,6 +8,11 @@ type FontProps = {
 
 const FontSelector = ({ font }: FontProps) => {
   const $selectedFont = useStore(selectedFont);
+  const $settings = useStore(settings);
+
+  useEffect(() => {
+    selectedFont.set($settings.font);
+  }, [$settings]);
 
   const selectFont = () => {
     selectedFont.set(font);

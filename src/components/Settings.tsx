@@ -49,17 +49,17 @@ const Settings = () => {
           <InputNumber
             onInputChange={(value: number) => pomodoroTime.set(value)}
             text='pomodoro'
-            value={$pomodoroTime}
+            value={$settings.pomodoroTime}
           />
           <InputNumber
             onInputChange={(value: number) => shortBreakTime.set(value)}
             text='short break'
-            value={$shortBreakTime}
+            value={$settings.shortBreakTime}
           />
           <InputNumber
             onInputChange={(value: number) => longBreakTime.set(value)}
             text='long break'
-            value={$longBreakTime}
+            value={$settings.longBreakTime}
           />
         </div>
       </div>
