@@ -22,11 +22,8 @@ const Settings = () => {
   const $shortBreakTime = useStore(shortBreakTime);
   const $longBreakTime = useStore(longBreakTime);
 
-  useEffect(() => {
-    console.log('settings', $settings);
-  }, [$settings]);
-
   const applySettings = () => {
+    console.log($pomodoroTime);
     settings.setKey('pomodoroTime', $pomodoroTime);
     settings.setKey('shortBreakTime', $shortBreakTime);
     settings.setKey('longBreakTime', $longBreakTime);
@@ -50,16 +47,19 @@ const Settings = () => {
             onInputChange={(value: number) => pomodoroTime.set(value)}
             text='pomodoro'
             value={$settings.pomodoroTime}
+            maxValue={120}
           />
           <InputNumber
             onInputChange={(value: number) => shortBreakTime.set(value)}
             text='short break'
             value={$settings.shortBreakTime}
+            maxValue={15}
           />
           <InputNumber
             onInputChange={(value: number) => longBreakTime.set(value)}
             text='long break'
             value={$settings.longBreakTime}
+            maxValue={30}
           />
         </div>
       </div>

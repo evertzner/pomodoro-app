@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react';
 type InputNumberProps = {
   text: string;
   value: number;
+  maxValue: number;
   onInputChange: (value: number) => void;
 };
 
-const InputNumber = ({ text, value, onInputChange }: InputNumberProps) => {
+const InputNumber = ({ text, value, maxValue, onInputChange }: InputNumberProps) => {
   const [inputValue, setInputValue] = useState(value);
 
   const positiveValue = (number: number) => {
@@ -18,11 +19,21 @@ const InputNumber = ({ text, value, onInputChange }: InputNumberProps) => {
   };
 
   const changeValue = (number: number) => {
-    positiveValue(number) && setInputValue(number);
+    const numberToEvaluate = isNaN(number) ? 0 : number;
+
+    if (numberToEvaluate > maxValue) return;
+
+    positiveValue(numberToEvaluate) && setInputValue(numberToEvaluate);
   };
 
   const increaseValue = () => {
-    setInputValue((current) => current + 1);
+    setInputValue((current) => {
+      if (current < maxValue) {
+        return current + 1;
+      } else {
+        return current;
+      }
+    });
   };
 
   const decreaseValue = () => {
@@ -40,10 +51,11 @@ const InputNumber = ({ text, value, onInputChange }: InputNumberProps) => {
         <input
           id='number'
           type='number'
+          inputMode='numeric'
           className='appearance-none outline-none text-sm font-bold text-blue-900 bg-blue-50 grid grid-cols-[1fr_max-content] w-[140px] h-[40px] md:h-[48px] items-center rounded-[10px] overflow-hidden p-4'
           value={inputValue}
           onChange={(e) => changeValue(parseInt(e.target.value))}
-          onKeyDown={(e) => e.preventDefault()}
+          max={maxValue}
         />
         <div className='absolute right-0 -translate-x-1/2 top-1/2 -translate-y-1/2'>
           <IconArrowUp onClick={increaseValue} />
