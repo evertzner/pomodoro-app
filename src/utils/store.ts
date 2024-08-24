@@ -6,6 +6,9 @@ export const selectedFont = atom<Font>('font-kumbh');
 export type Color = 'bg-red-400' | 'bg-cyan-300' | 'bg-fucsia-400';
 export const selectedColor = atom<Color>('bg-red-400');
 
+export type Time = 'pomodoro' | 'short break' | 'long break';
+export const selectedTime = atom<Time>('pomodoro');
+
 export const pomodoroTime = atom(25);
 export const shortBreakTime = atom(5);
 export const longBreakTime = atom(15);
