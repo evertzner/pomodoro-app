@@ -12,7 +12,6 @@ import {
   isModalOpened
 } from '../utils/store';
 import { useStore } from '@nanostores/react';
-import { useEffect } from 'react';
 
 const Settings = () => {
   const $settings = useStore(settings);
