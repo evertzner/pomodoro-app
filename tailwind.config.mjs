@@ -27,6 +27,11 @@ export default {
         kumbh: ['Kumbh Sans', 'system-ui'],
         roboto: ['Roboto Slab', 'system-ui'],
         space: ['Space Mono', 'system-ui']
+      },
+      keyframes: {
+        timer: {
+          '100%': { 'stroke-dashoffset': 0 }
+        }
       }
     }
   },
