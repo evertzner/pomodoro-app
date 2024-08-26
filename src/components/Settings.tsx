@@ -4,7 +4,7 @@ import IconClose from '../Icons/IconClose';
 import ColorSelector from './ColorSelector';
 import {
   settings,
-  selectedColor,
+  selectedColorName,
   selectedFont,
   pomodoroTime,
   shortBreakTime,
@@ -15,19 +15,18 @@ import { useStore } from '@nanostores/react';
 
 const Settings = () => {
   const $settings = useStore(settings);
-  const $selectedColor = useStore(selectedColor);
+  const $selectedColorName = useStore(selectedColorName);
   const $selectedFont = useStore(selectedFont);
   const $pomodoroTime = useStore(pomodoroTime);
   const $shortBreakTime = useStore(shortBreakTime);
   const $longBreakTime = useStore(longBreakTime);
 
   const applySettings = () => {
-    console.log($pomodoroTime);
     settings.setKey('pomodoroTime', $pomodoroTime);
     settings.setKey('shortBreakTime', $shortBreakTime);
     settings.setKey('longBreakTime', $longBreakTime);
     settings.setKey('font', $selectedFont);
-    settings.setKey('color', $selectedColor);
+    settings.setKey('colorName', $selectedColorName);
   };
 
   return (
@@ -76,9 +75,9 @@ const Settings = () => {
         <div className='py-6 flex flex-col gap-4 items-center md:flex-row md:justify-between'>
           <h3 className='text-preset-5 text-center md:text-left'>Color</h3>
           <div className='flex gap-4'>
-            <ColorSelector color='bg-red-400' />
-            <ColorSelector color='bg-cyan-300' />
-            <ColorSelector color='bg-fucsia-400' />
+            <ColorSelector colorName='red' />
+            <ColorSelector colorName='cyan' />
+            <ColorSelector colorName='fucsia' />
           </div>
         </div>
         <button

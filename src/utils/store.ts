@@ -3,11 +3,20 @@ import { atom, map } from 'nanostores';
 export type Font = 'font-kumbh' | 'font-roboto' | 'font-space';
 export const selectedFont = atom<Font>('font-kumbh');
 
-export type Color = 'bg-red-400' | 'bg-cyan-300' | 'bg-fucsia-400';
-export const selectedColor = atom<Color>('bg-red-400');
+export type ColorName = 'red' | 'cyan' | 'fucsia';
+export const selectedColorName = atom<ColorName>('red');
+
+export const color = {
+  red: { background: 'bg-red-400', hexValue: '#F87070' },
+  cyan: { background: 'bg-cyan-300', hexValue: '#70F3F8' },
+  fucsia: { background: 'bg-fucsia-400', hexValue: '#D881F8' }
+};
 
 export type Time = 'pomodoro' | 'short break' | 'long break';
 export const selectedTime = atom<Time>('pomodoro');
+
+export type Status = 'start' | 'resume' | 'pause';
+export const selectedStatus = atom<Status>('start');
 
 export const pomodoroTime = atom(25);
 export const shortBreakTime = atom(5);
@@ -19,14 +28,14 @@ export interface ISettings {
   pomodoroTime: number;
   shortBreakTime: number;
   longBreakTime: number;
+  colorName: ColorName;
   font: Font;
-  color: Color;
 }
 
 export const settings = map<ISettings>({
   pomodoroTime: 25,
   shortBreakTime: 5,
   longBreakTime: 15,
-  color: 'bg-red-400',
+  colorName: 'red',
   font: 'font-kumbh'
 });

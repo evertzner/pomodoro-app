@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/react';
 import { settings, isModalOpened } from '../utils/store';
 import IconGear from '../Icons/IconGear';
 import Selector from './Selector';
+import Clock from './Clock';
 
 const Main = () => {
   const $settings = useStore(settings);
@@ -15,7 +16,8 @@ const Main = () => {
     >
       <Header />
       <Selector />
-      <button onClick={() => isModalOpened.set(true)}>
+      <Clock />
+      <button className='mt-9' onClick={() => isModalOpened.set(true)}>
         <IconGear />
       </button>
       {$isModalOpened && <Settings />}

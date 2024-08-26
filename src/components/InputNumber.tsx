@@ -49,7 +49,7 @@ const InputNumber = ({ text, value, maxValue, onInputChange }: InputNumberProps)
       <p className='text-preset-7 text-blue-900 opacity-40'>{text}</p>
       <div className='relative w-max'>
         <input
-          id='number'
+          id={text}
           type='number'
           inputMode='numeric'
           className='appearance-none outline-none text-sm font-bold text-blue-900 bg-blue-50 grid grid-cols-[1fr_max-content] w-[140px] h-[40px] md:h-[48px] items-center rounded-[10px] overflow-hidden p-4'
