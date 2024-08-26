@@ -7,7 +7,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .text-preset-1 {
-  @apply text-[100px] font-bold leading-[1.2] tracking-tighter;
+  @apply text-[80px] md:text-[100px] font-bold leading-[1.2];
 }
 
 .text-preset-2 {
@@ -19,7 +19,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .text-preset-4 {
-  @apply font-bold leading-tight tracking-[15px] uppercase;
+  @apply text-sm md:text-base font-bold leading-tight tracking-[15px] uppercase;
 }
 
 .text-preset-5 {
