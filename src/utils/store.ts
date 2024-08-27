@@ -12,8 +12,14 @@ export const color = {
   fucsia: { background: 'bg-fucsia-400', hexValue: '#D881F8' }
 };
 
-export type Time = 'pomodoro' | 'short break' | 'long break';
+export type Time = 'pomodoro' | 'shortBreak' | 'longBreak';
 export const selectedTime = atom<Time>('pomodoro');
+
+export const times = {
+  pomodoro: { settingsValue: 'pomodoroTime', label: 'pomodoro' },
+  shortBreak: { settingsValue: 'shortBreakTime', label: 'short break' },
+  longBreak: { settingsValue: 'longBreakTime', label: 'long break' }
+};
 
 export type Status = 'start' | 'resume' | 'pause';
 export const selectedStatus = atom<Status>('start');
