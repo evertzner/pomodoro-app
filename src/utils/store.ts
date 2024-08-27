@@ -21,10 +21,17 @@ export const times = {
   longBreak: { settingsValue: 'longBreakTime', label: 'long break' }
 };
 
-export type Status = 'start' | 'resume' | 'pause';
-export const selectedStatus = atom<Status>('start');
+export type Status = 'off' | 'started' | 'resumed' | 'paused';
+export const selectedStatus = atom<Status>('off');
 
-export const pomodoroTime = atom(25);
+export const status = {
+  off: 'start',
+  started: 'pause',
+  paused: 'resume',
+  resumed: 'pause'
+};
+
+export const pomodoroTime = atom(3);
 export const shortBreakTime = atom(5);
 export const longBreakTime = atom(15);
 
@@ -39,7 +46,7 @@ export interface ISettings {
 }
 
 export const settings = map<ISettings>({
-  pomodoroTime: 25,
+  pomodoroTime: 3,
   shortBreakTime: 5,
   longBreakTime: 15,
   colorName: 'red',
