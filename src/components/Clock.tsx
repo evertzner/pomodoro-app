@@ -2,17 +2,13 @@ import IconRestart from '../Icons/IconRestart';
 import { selectedStatus, settings, color } from '../utils/store';
 import { useStore } from '@nanostores/react';
 
-type ProgressRingProps = {
-  mobile?: boolean;
-};
-
-const ProgressRing = ({ mobile }: ProgressRingProps) => {
+const ProgressRing = () => {
   const $settings = useStore(settings);
   const { hexValue } = color[$settings.colorName];
 
-  if (mobile)
-    return (
-      <svg viewBox='-3 -3 254 254' width='256' height='256'>
+  return (
+    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
+      <svg viewBox='-3 -3 254 254' width='256' height='256' className='flex md:hidden'>
         <path
           d='M124 5A1 1 0 01124 243 1 1 0 01124 5'
           stroke={hexValue}
@@ -24,21 +20,19 @@ const ProgressRing = ({ mobile }: ProgressRingProps) => {
           className='animate-[timer_5s_linear_forwards]'
         />
       </svg>
-    );
-
-  return (
-    <svg viewBox='-4.49999 -1 341 341' width='341' height='341'>
-      <path
-        d='M166 7A1 1 0 01166 332 1 1 0 01166 7'
-        stroke={hexValue}
-        strokeWidth='11'
-        fill='none'
-        strokeDasharray='1020'
-        strokeDashoffset='1020'
-        strokeLinecap='round'
-        className='animate-[timer_5s_linear_forwards]'
-      />
-    </svg>
+      <svg viewBox='-4.49999 -1 341 341' width='341' height='341' className='hidden md:flex'>
+        <path
+          d='M166 7A1 1 0 01166 332 1 1 0 01166 7'
+          stroke={hexValue}
+          strokeWidth='11'
+          fill='none'
+          strokeDasharray='1020'
+          strokeDashoffset='1020'
+          strokeLinecap='round'
+          className='animate-[timer_5s_linear_forwards]'
+        />
+      </svg>
+    </div>
   );
 };
 
@@ -65,12 +59,7 @@ const Clock = () => {
             <IconRestart />
           </button>
         </div>
-        <div className='flex md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
-          <ProgressRing mobile={true} />
-        </div>
-        <div className='hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
-          <ProgressRing />
-        </div>
+        <ProgressRing />
       </div>
     </div>
   );
