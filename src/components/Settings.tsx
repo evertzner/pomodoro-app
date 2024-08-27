@@ -30,7 +30,7 @@ const Settings = () => {
   };
 
   return (
-    <div className='absolute top-0 w-full h-full grid place-items-center bg-[#0A0C1C] bg-opacity-50'>
+    <div className='absolute top-0 w-full h-full grid place-items-center bg-[#0A0C1C] bg-opacity-50 z-50'>
       <div className='relative flex flex-col p-6 pb-7 md:p-10 md:pt-9 rounded-2xl w-[327px] md:w-[540px] bg-white'>
         <div className='flex justify-between items-center mb-6'>
           <h2 className='text-preset-3'>Settings</h2>
@@ -46,7 +46,7 @@ const Settings = () => {
               onInputChange={(value: number) => pomodoroTime.set(value)}
               text='pomodoro'
               value={$settings.pomodoroTime}
-              maxValue={120}
+              maxValue={90}
             />
             <InputNumber
               onInputChange={(value: number) => shortBreakTime.set(value)}

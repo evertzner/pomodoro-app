@@ -1,4 +1,4 @@
-import { selectedTime, settings, color, type Time } from '../utils/store';
+import { selectedTime, settings, color, times, type Time } from '../utils/store';
 import { useStore } from '@nanostores/react';
 
 type ButtonProps = {
@@ -20,7 +20,7 @@ const Button = ({ time }: ButtonProps) => {
       className={`text-preset-7 px-5 py-4 rounded-full ${time === $selectedTime ? `${background} text-blue-900` : 'bg-transparent text-blue-100 text-opacity-40 hover:text-blue-100'}  `}
       onClick={selectTime}
     >
-      {time}
+      {times[time].label}
     </button>
   );
 };
@@ -28,8 +28,8 @@ const Button = ({ time }: ButtonProps) => {
 const Selector = () => (
   <div className='w-[345px] md:w-[381px] flex justify-between items-center bg-blue-950 p-1.5 rounded-full'>
     <Button time='pomodoro' />
-    <Button time='short break' />
-    <Button time='long break' />
+    <Button time='shortBreak' />
+    <Button time='longBreak' />
   </div>
 );
 
