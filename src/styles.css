@@ -10,6 +10,10 @@ input[type='number']::-webkit-inner-spin-button {
   @apply text-[80px] md:text-[100px] font-bold leading-[1.2];
 }
 
+.text-preset-1-mono {
+  @apply text-[80px] md:text-[100px] tracking-[-10px] leading-[1.2];
+}
+
 .text-preset-2 {
   @apply text-2xl md:text-[32px] font-bold leading-tight;
 }
