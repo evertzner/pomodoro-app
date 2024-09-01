@@ -21,14 +21,15 @@ export const times = {
   longBreak: { settingsValue: 'longBreakTime', label: 'long break' }
 };
 
-export type Status = 'off' | 'started' | 'resumed' | 'paused';
+export type Status = 'off' | 'started' | 'resumed' | 'paused' | 'finished';
 export const selectedStatus = atom<Status>('off');
 
 export const status = {
   off: 'start',
   started: 'pause',
   paused: 'resume',
-  resumed: 'pause'
+  resumed: 'pause',
+  finished: 'restart'
 };
 
 export const pomodoroTime = atom(3);
