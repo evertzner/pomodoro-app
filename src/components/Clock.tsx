@@ -21,14 +21,13 @@ const ProgressRing = ({ duration }: ProgressRingProps) => {
     animationFillMode: 'forwards',
     animationTimingFunction: 'linear',
     animationPlayState: 'running',
-    animationDuration: calculatedDuration
+    animationDuration: calculatedDuration,
+    animationDelay: '1s'
   };
 
   const timers: NodeListOf<SVGPathElement> = document.querySelectorAll('[name=timer]');
 
   // console.log(timers.forEach((t) => t.style));
-
-  timers.forEach((t) => console.log(t.style));
 
   switch ($selectedStatus) {
     case 'off':
@@ -139,7 +138,7 @@ const Clock = () => {
     selectedStatus.set('off');
     setMinutes(value);
     setSeconds(0);
-  }, [$selectedTime]);
+  }, [$selectedTime, $settings]);
 
   useEffect(() => {
     switch ($selectedStatus) {
@@ -149,16 +148,16 @@ const Clock = () => {
         break;
       case 'started':
       case 'resumed':
+        if (seconds === 0 && minutes === 0) selectedStatus.set('finished');
         const interval = setInterval(() => {
-          setMinutes((current: number) => current - 1);
-          // console.log(minutes);
+          if (seconds === 0) setMinutes((current: number) => current - 1);
+          setSeconds((current: number) => (current === 0 ? 59 : current - 1));
         }, 1000);
         return () => clearInterval(interval);
-
       default:
         break;
     }
-  }, [$selectedStatus]);
+  }, [$selectedStatus, seconds, minutes]);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -181,7 +180,7 @@ const Clock = () => {
         >
           <span className='place-self-end'>{minutes > 9 ? minutes : '0' + minutes}</span>
           <span>:</span>
-          <span>{seconds > 10 ? seconds : '0' + seconds}</span>
+          <span>{seconds > 9 ? seconds : '0' + seconds}</span>
         </div>
         <div className='pt-1 flex flex-col items-center gap-3 md:gap-4'>
           <ActionButton />
