@@ -37,3 +37,9 @@ input[type='number']::-webkit-inner-spin-button {
 .text-preset-7 {
   @apply text-xs md:text-sm font-bold leading-[1.2];
 }
+
+@keyframes timer {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
