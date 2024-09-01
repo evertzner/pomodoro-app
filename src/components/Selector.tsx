@@ -26,7 +26,7 @@ const Button = ({ time }: ButtonProps) => {
 };
 
 const Selector = () => (
-  <div className='w-[345px] md:w-[381px] flex justify-between items-center bg-blue-950 p-1.5 rounded-full'>
+  <div className='w-[345px] md:w-[381px] flex justify-between items-center bg-blue-950 p-1.5 rounded-full place-self-center'>
     <Button time='pomodoro' />
     <Button time='shortBreak' />
     <Button time='longBreak' />

@@ -164,7 +164,7 @@ const Clock = () => {
   }, [$selectedStatus, seconds, minutes]);
 
   return (
-    <div className='flex items-center justify-center mt-1 w-[300px] h-[300px] md:w-[410px] md:h-[410px] rounded-full bg-gradient-to-tl from-[#2E325A] to-[#0E112A] shadow-[-50px_-50px_100px_0px_#272C5A,50px_50px_100px_0px_#121530]'>
+    <div className='flex items-center justify-center mt-1 w-[300px] h-[300px] md:w-[410px] md:h-[410px] rounded-full bg-gradient-to-tl from-[#2E325A] to-[#0E112A] shadow-[-50px_-50px_100px_0px_#272C5A,50px_50px_100px_0px_#121530] place-self-center'>
       <div className='relative grid grid-rows-[2fr_1fr] justify-center w-[268px] h-[268px] md:w-[366px] md:h-[366px] bg-blue-950 rounded-full'>
         <div
           className={`${$settings.font === 'font-space' ? 'text-preset-1-mono' : 'text-preset-1'} text-blue-100 self-end z-10 grid grid-cols-[1fr_min-content_1fr] mb-2`}

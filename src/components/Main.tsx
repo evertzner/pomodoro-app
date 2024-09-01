@@ -12,12 +12,12 @@ const Main = () => {
 
   return (
     <main
-      className={`flex flex-col pt-8 pb-12 ${$settings.font} items-center  h-full gap-11 relative`}
+      className={`grid grid-rows-[max-content_max-content_max-content_1fr] justify-center pt-8 pb-12 ${$settings.font}  h-full gap-11 relative`}
     >
       <Header />
       <Selector />
       <Clock />
-      <button className='mt-9' onClick={() => isModalOpened.set(true)}>
+      <button className='self-end place-self-center' onClick={() => isModalOpened.set(true)}>
         <IconGear />
       </button>
       {$isModalOpened && <Settings />}
