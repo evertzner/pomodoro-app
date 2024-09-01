@@ -34,7 +34,10 @@ const Settings = () => {
       <div className='relative flex flex-col p-6 pb-7 md:p-10 md:pt-9 rounded-2xl w-[327px] md:w-[540px] bg-white'>
         <div className='flex justify-between items-center mb-6'>
           <h2 className='text-preset-3'>Settings</h2>
-          <button onClick={() => isModalOpened.set(false)}>
+          <button
+            onClick={() => isModalOpened.set(false)}
+            className='text-blue-900 hover:text-blue-950'
+          >
             <IconClose />
           </button>
         </div>
@@ -82,7 +85,7 @@ const Settings = () => {
         </div>
         <button
           onClick={applySettings}
-          className='bg-red-400 text-white font-bold p-[18px] w-[140px] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2'
+          className='bg-red-400 hover:bg-red-500 text-white font-bold p-[18px] w-[140px] rounded-full absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2'
         >
           Apply
         </button>
