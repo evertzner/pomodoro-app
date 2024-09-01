@@ -10,24 +10,50 @@ type ProgressRingProps = {
 
 const ProgressRing = ({ duration }: ProgressRingProps) => {
   const $settings = useStore(settings);
+  const $selectedStatus = useStore(selectedStatus);
 
   const { hexValue } = color[$settings.colorName];
 
-  const calculatedDuration = `${duration * 60}s`;
+  let calculatedDuration = `${duration * 60}s`;
 
-  const animation = () => {
-    return {
-      animationName: 'timer',
-      animationFillMode: 'forwards',
-      animationTimingFunction: 'linear',
-      animationDuration: calculatedDuration
-    };
+  const animation: React.CSSProperties = {
+    animationName: 'timer',
+    animationFillMode: 'forwards',
+    animationTimingFunction: 'linear',
+    animationPlayState: 'running',
+    animationDuration: calculatedDuration
   };
 
+  const timers: NodeListOf<SVGPathElement> = document.querySelectorAll('[name=timer]');
+
+  // console.log(timers.forEach((t) => t.style));
+
+  timers.forEach((t) => console.log(t.style));
+
+  switch ($selectedStatus) {
+    case 'off':
+      calculatedDuration = `${duration * 60}s`;
+      animation.animationDuration = calculatedDuration;
+      animation.animationPlayState = 'paused';
+      timers.forEach((t) => (t.style.animationName = ''));
+      break;
+    case 'paused':
+      animation.animationPlayState = 'paused';
+      break;
+    case 'resumed':
+    case 'started':
+      animation.animationPlayState = 'running';
+      timers.forEach((t) => (t.style.animationName = 'timer'));
+      break;
+    default:
+      break;
+  }
+
   return (
-    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-      <svg viewBox='-3 -3 254 254' width='256' height='256' className='flex md:hidden'>
+    <div className='[&_svg]:absolute [&_svg]:top-1/2 [&_svg]:left-1/2 [&_svg]:-translate-x-1/2 [&_svg]:-translate-y-1/2'>
+      <svg viewBox='-3 -3 254 254' width='256' height='256' className='opacity-100 md:opacity-0'>
         <path
+          name='timer'
           d='M124 5A1 1 0 01124 243 1 1 0 01124 5'
           stroke={hexValue}
           strokeWidth='8'
@@ -35,20 +61,25 @@ const ProgressRing = ({ duration }: ProgressRingProps) => {
           strokeDasharray='750'
           strokeDashoffset='750'
           strokeLinecap='round'
-          style={animation()}
+          style={animation}
         />
       </svg>
-      <svg viewBox='-4.49999 -1 341 341' width='341' height='341' className='hidden md:flex'>
+      <svg
+        viewBox='-4.49999 -1 341 341'
+        width='341'
+        height='341'
+        className='opacity-0 md:opacity-100 '
+      >
         <path
+          name='timer'
           d='M166 7A1 1 0 01166 332 1 1 0 01166 7'
           stroke={hexValue}
           strokeWidth='11'
           fill='none'
-          strokeDasharray='1020'
-          strokeDashoffset='1020'
+          strokeDasharray='1021'
+          strokeDashoffset='1021'
           strokeLinecap='round'
-          className='animate-[timer_linear_forwards]'
-          style={{ animationPlayState: 'paused', animationDuration: calculatedDuration }}
+          style={animation}
         />
       </svg>
     </div>
@@ -120,7 +151,7 @@ const Clock = () => {
       case 'resumed':
         const interval = setInterval(() => {
           setMinutes((current: number) => current - 1);
-          console.log(minutes);
+          // console.log(minutes);
         }, 1000);
         return () => clearInterval(interval);
 
