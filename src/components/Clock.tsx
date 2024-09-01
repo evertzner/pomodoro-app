@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import IconRestart from '../Icons/IconRestart';
 import { selectedStatus, selectedTime, settings, times, color, status } from '../utils/store';
 import { useStore } from '@nanostores/react';
-import moment from 'moment';
 
 type ProgressRingProps = {
   duration: number;
@@ -26,8 +25,6 @@ const ProgressRing = ({ duration }: ProgressRingProps) => {
   };
 
   const timers: NodeListOf<SVGPathElement> = document.querySelectorAll('[name=timer]');
-
-  // console.log(timers.forEach((t) => t.style));
 
   switch ($selectedStatus) {
     case 'off':
@@ -100,6 +97,9 @@ const ActionButton = () => {
       case 'paused':
         selectedStatus.set('resumed');
         break;
+      case 'finished':
+        selectedStatus.set('off');
+        break;
       default:
         break;
     }
@@ -125,7 +125,6 @@ const RestartButton = () => {
 };
 
 const Clock = () => {
-  // const $selectedStatus = useStore(selectedStatus);
   const $settings = useStore(settings);
   const $selectedTime = useStore(selectedTime);
   const $selectedStatus = useStore(selectedStatus);
@@ -133,6 +132,8 @@ const Clock = () => {
   const value = $settings[settingsValue];
   const [minutes, setMinutes] = useState(value);
   const [seconds, setSeconds] = useState(0);
+
+  const finishedSound = new Audio('./sounds/timer-off.mp3');
 
   useEffect(() => {
     selectedStatus.set('off');
@@ -148,7 +149,10 @@ const Clock = () => {
         break;
       case 'started':
       case 'resumed':
-        if (seconds === 0 && minutes === 0) selectedStatus.set('finished');
+        if (seconds === 0 && minutes === 0) {
+          finishedSound.play();
+          selectedStatus.set('finished');
+        }
         const interval = setInterval(() => {
           if (seconds === 0) setMinutes((current: number) => current - 1);
           setSeconds((current: number) => (current === 0 ? 59 : current - 1));
@@ -158,19 +162,6 @@ const Clock = () => {
         break;
     }
   }, [$selectedStatus, seconds, minutes]);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTimer((current) => current - 1);
-  //     console.log(timer);
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [timer]);
-
-  // const time = moment().startOf('day').add($settings[settingsValue], 'minutes');
-
-  // const formattedTime = time.format('mm:ss');
-  // const formattedTime = `${value > 9 ? value : '0' + value}:00`;
 
   return (
     <div className='flex items-center justify-center mt-1 w-[300px] h-[300px] md:w-[410px] md:h-[410px] rounded-full bg-gradient-to-tl from-[#2E325A] to-[#0E112A] shadow-[-50px_-50px_100px_0px_#272C5A,50px_50px_100px_0px_#121530]'>
