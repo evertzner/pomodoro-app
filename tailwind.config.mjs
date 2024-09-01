@@ -8,7 +8,8 @@ export default {
       },
       colors: {
         red: {
-          400: '#F87070'
+          400: '#F87070',
+          500: '#d15f5f'
         },
         cyan: {
           300: '#70F3F8'
