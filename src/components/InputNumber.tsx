@@ -13,7 +13,9 @@ const InputNumber = ({ text, value, maxValue, onInputChange }: InputNumberProps)
   const [inputValue, setInputValue] = useState(value);
 
   const positiveValue = (number: number) => {
-    if (number < 0) return false;
+    if (number < 0) {
+      return false;
+    }
 
     return true;
   };
@@ -21,7 +23,9 @@ const InputNumber = ({ text, value, maxValue, onInputChange }: InputNumberProps)
   const changeValue = (number: number) => {
     const numberToEvaluate = isNaN(number) ? 0 : number;
 
-    if (numberToEvaluate > maxValue) return;
+    if (numberToEvaluate > maxValue) {
+      return;
+    }
 
     positiveValue(numberToEvaluate) && setInputValue(numberToEvaluate);
   };

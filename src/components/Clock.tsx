@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import IconRestart from '../Icons/IconRestart';
-import { selectedStatus, selectedTime, settings, times, color, status } from '../utils/store';
+import {
+  selectedStatus,
+  selectedTime,
+  settings,
+  times,
+  color,
+  status,
+  type ISettings
+} from '../utils/store';
 import { useStore } from '@nanostores/react';
 
 type ProgressRingProps = {
@@ -129,7 +137,7 @@ const Clock = () => {
   const $selectedTime = useStore(selectedTime);
   const $selectedStatus = useStore(selectedStatus);
   const { settingsValue } = times[$selectedTime];
-  const value = $settings[settingsValue];
+  const value = $settings[settingsValue as keyof ISettings] as number;
   const [minutes, setMinutes] = useState(value);
   const [seconds, setSeconds] = useState(0);
 
@@ -154,7 +162,9 @@ const Clock = () => {
           selectedStatus.set('finished');
         }
         const interval = setInterval(() => {
-          if (seconds === 0) setMinutes((current: number) => current - 1);
+          if (seconds === 0) {
+            setMinutes((current: number) => current - 1);
+          }
           setSeconds((current: number) => (current === 0 ? 59 : current - 1));
         }, 1000);
         return () => clearInterval(interval);
