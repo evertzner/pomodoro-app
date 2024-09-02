@@ -11,6 +11,7 @@ GREEN="\033[32m"
 YELLOW="\033[33m"
 BLUE="\033[34m"
 MAGENTA="\033[35m"
+CYAN="\033[36m"
 
 # Custom message before starting the process
 echo "${MAGENTA}🚀 Starting the pre-commit process... Good luck!${RESET}"
@@ -32,4 +33,4 @@ fi
 echo "${GREEN}✅ 'npm lint' completed successfully!${RESET}"
 
 # Custom message after the process finishes
-echo "${MAGENTA}🎉 All checks passed! Ready to commit! 🚀${RESET}"
+echo "${CYAN}🎉 All checks passed! Ready to commit! 🚀${RESET}"
