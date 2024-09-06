@@ -12,6 +12,9 @@ This is a solution to the [Pomodoro app challenge on Frontend Mentor](https://ww
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
+  - [Installation](#installation)
+    - [Install dependencies](#install-dependencies)
+    - [Run Application](#run-application)
 
 ## Overview
 
@@ -40,3 +43,17 @@ Users should be able to:
 - Astro
 - Tailwind
 - React
+
+## Installation
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run Application
+
+```bash
+npm run dev
+```
